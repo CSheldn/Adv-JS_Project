@@ -24,9 +24,13 @@
     <template id="note-template">
         <div class="note" tabindex="0">
             <div class="note-header">
+                <button class="image-btn" title="Add an image">🖼️</button>
                 <button class="quote-btn" title="Add inspirational quote">💡</button>
                 <button class="delete-btn" title="Delete note">🗑️</button>
+
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
             </div>
+            <img id="image">
             <div class="note-content" contenteditable="true"></div>
         </div>
     </template>
