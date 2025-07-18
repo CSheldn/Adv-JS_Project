@@ -176,3 +176,9 @@ footer {
 img {
     padding-bottom: 1rem;
 }
+
+.time-stamp {
+    color: grey;
+    text-align: right;
+    font-size: 10px;
+}

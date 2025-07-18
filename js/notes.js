@@ -18,6 +18,7 @@ export class Note {
      * @param {number} options.x - X position on the board
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
+     * @param {Date} options.time - Note creation time.
      */
     constructor({ id = null, content = '', x = 0, y = 0, color = null }) {
         this.id = id || this.generateId();
@@ -26,6 +27,7 @@ export class Note {
         this.y = y;
         this.color = color || this.getRandomColor();
         this.element = null;
+        this.time = new Date();
     }
 
     /**
