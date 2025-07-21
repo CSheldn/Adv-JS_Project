@@ -106,6 +106,10 @@ export class Note {
         }
     }
 
+    /**
+     * Update the note's image.
+     * @param {image} image - Sticky note image. 
+     */
     updateImage(image) {
         this.img = image;
         

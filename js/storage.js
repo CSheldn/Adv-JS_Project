@@ -12,7 +12,6 @@ const STORAGE_KEY = 'quicknotes_data';
  */
 export function saveNotes(notes) {
     try {
-        console.log(notes)
         const notesJson = JSON.stringify(notes);
         localStorage.setItem(STORAGE_KEY, notesJson);
         return true;
