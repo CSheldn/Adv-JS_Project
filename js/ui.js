@@ -84,7 +84,6 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     const quoteButton = noteElement.querySelector('.quote-btn');
     const imageButton = noteElement.querySelector('.image-btn');
     const fileInput = noteElement.querySelector('#file-input');
-    const previewImage = noteElement.querySelector("#image");
     
     // Track whether the note is being dragged
     let isDragging = false;
@@ -127,8 +126,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
         const file = fileInput.files[0];
         const reader = new FileReader();
         reader.onload = function(e) {
-            previewImage.src = e.target.result;
-            previewImage.style.display = 'block';
+            note.updateImage(e.target.result)
         };
         reader.readAsDataURL(file);
     })

@@ -14,14 +14,16 @@ export class Note {
      * Create a new note
      * @param {Object} options - Note initialization options
      * @param {string} options.id - Unique identifier for the note
+     * @param {image} option.img - image on a note.
      * @param {string} options.content - Text content of the note
      * @param {number} options.x - X position on the board
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
      * @param {string} options.time - Note creation time.
      */
-    constructor({ id = null, content = '', x = 0, y = 0, color = null }) {
+    constructor({ id = null, img = null, content = '', x = 0, y = 0, color = null }) {
         this.id = id || this.generateId();
+        this.img = img;
         this.content = content;
         this.x = x;
         this.y = y;
@@ -61,6 +63,12 @@ export class Note {
         noteElement.style.left = `${this.x}px`;
         noteElement.style.top = `${this.y}px`;
         
+        // Set image
+        const imageElement = noteElement.querySelector('#image');
+        if (this.img != null) {
+            imageElement.src = this.img;
+        }
+
         // Set content
         const contentElement = noteElement.querySelector('.note-content');
         contentElement.textContent = this.content;
@@ -98,6 +106,15 @@ export class Note {
         }
     }
 
+    updateImage(image) {
+        this.img = image;
+        
+        if (this.element) {
+            const imageElement = this.element.querySelector('#image');
+            imageElement.src = image;
+        }
+    }
+
     /**
      * Update the note's content
      * @param {string} content - New content
@@ -118,6 +135,7 @@ export class Note {
     toObject() {
         return {
             id: this.id,
+            img: this.img,
             content: this.content,
             x: this.x,
             y: this.y,
