@@ -21,7 +21,7 @@ export class Note {
      * @param {string} options.color - CSS class for note color
      * @param {string} options.time - Note creation time.
      */
-    constructor({ id = null, img = null, content = '', x = 0, y = 0, color = null }) {
+    constructor({ id = null, img = null, content = '', x = 0, y = 0, color = null, time = new Date() }) {
         this.id = id || this.generateId();
         this.img = img;
         this.content = content;
@@ -29,7 +29,7 @@ export class Note {
         this.y = y;
         this.color = color || this.getRandomColor();
         this.element = null;
-        this.time = new Date();
+        this.time = time;
     }
 
     /**

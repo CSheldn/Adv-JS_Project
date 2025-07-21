@@ -49,7 +49,8 @@ export function createNewNote(x, y, noteManager) {
     const note = createNote({
         content: '',
         x: boardX,
-        y: boardY
+        y: boardY,
+        time: new Date()
     });
     
     // Add to manager
