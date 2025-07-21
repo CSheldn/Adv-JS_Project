@@ -18,7 +18,7 @@ export class Note {
      * @param {number} options.x - X position on the board
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
-     * @param {Date} options.time - Note creation time.
+     * @param {string} options.time - Note creation time.
      */
     constructor({ id = null, content = '', x = 0, y = 0, color = null }) {
         this.id = id || this.generateId();
@@ -67,6 +67,19 @@ export class Note {
         
         // Store reference to the element
         this.element = noteElement;
+
+        // Set time
+        const date = new Date(this.time);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        const timeElement = noteElement.querySelector(".time-stamp");
+        timeElement.textContent = `${year}-${month}-${day} ${hours}:${minutes}`;
+
         return noteElement;
     }
 
@@ -108,7 +121,8 @@ export class Note {
             content: this.content,
             x: this.x,
             y: this.y,
-            color: this.color
+            color: this.color,
+            time: this.time
         };
     }
 
