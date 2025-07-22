@@ -13,6 +13,8 @@ import { saveNotes, exportNotesAsJson } from './storage.js';
 export function initializeUI(noteManager) {
     const noteBoard = document.getElementById('note-board');
     const exportBtn = document.getElementById('export-btn');
+    const sortNew = document.getElementById('new-btn');
+    const sortOld = document.getElementById('old-btn');
 
     // Double click on board to create a new note
     noteBoard.addEventListener('dblclick', (event) => {
@@ -26,6 +28,11 @@ export function initializeUI(noteManager) {
     exportBtn.addEventListener('click', () => {
         exportNotes(noteManager);
     });
+
+    // Sort new button click handler
+    sortNew.addEventListener('click', () => {
+        
+    })
 
     // Setup auto-save timer
     setupAutoSave(noteManager);
@@ -212,6 +219,10 @@ export function deleteNote(noteElement, note, noteManager) {
 export function exportNotes(noteManager) {
     const notes = noteManager.toJSON();
     exportNotesAsJson(notes);
+}
+
+export function SortByNew(notes) {
+    
 }
 
 /**

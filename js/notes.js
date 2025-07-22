@@ -126,10 +126,12 @@ export class Note {
     updateContent(content) {
         this.content = content;
         
-        if (this.element) {
-            const contentElement = this.element.querySelector('.note-content');
-            contentElement.textContent = content;
-        }
+        // Commented out code below to fix typing on sticky notes.
+
+        // if (this.element) {
+        //     const contentElement = this.element.querySelector('.note-content');
+        //     contentElement.textContent = content;
+        // }
     }
 
     /**
