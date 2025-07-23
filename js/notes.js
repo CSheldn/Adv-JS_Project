@@ -157,7 +157,7 @@ export class Note {
     async addRandomQuote() {
         try {
             // Example of fetching from a quote API
-            const response = await fetch('https://api.quotable.io/random?tags=inspirational,success');
+            const response = await fetch('http://api.quotable.io/random?tags=inspirational,success');
             
             if (!response.ok) {
                 throw new Error('Failed to fetch quote');

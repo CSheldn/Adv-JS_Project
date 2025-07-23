@@ -18,11 +18,11 @@ export function initializeUI(noteManager) {
 
     const gap = 10;
     let width = innerWidth;
-    let note_width = 200;
+    let note_width = 0;
     
     if (width < 600) {
         note_width = 160;
-    }
+    } else {note_width = 200}
 
     // Double click on board to create a new note
     noteBoard.addEventListener('dblclick', (event) => {
@@ -39,13 +39,17 @@ export function initializeUI(noteManager) {
 
     window.addEventListener('resize', () => {
         width = innerWidth;
+
+        if (width < 600) {
+            note_width = 160;
+        } else (note_width = 200)
     })
 
     // Sort new button click handler
     newBtn.addEventListener('click', () => {
-        let sortX = 10;
-        let totalX = 210;
-        let sortY = 10;
+        let sortX = gap;
+        let totalX = note_width + gap;
+        let sortY = gap;
 
         for (let note of noteManager.getAllNotes().reverse()) {
 
@@ -55,30 +59,30 @@ export function initializeUI(noteManager) {
             totalX += note_width + gap;
 
             if (totalX > width) {
-                sortY += 210;
-                sortX = 10;
-                totalX = 210;
+                sortY += note_width + gap;
+                sortX = gap;
+                totalX = note_width;
             }
         }
 
     })
 
     oldBtn.addEventListener('click', () => {
-        let sortX = 10;
-        let totalX = 210;
-        let sortY = 10;
+        let sortX = gap;
+        let totalX = note_width + gap;
+        let sortY = gap;
 
         for (let note of noteManager.getAllNotes()) {
 
             note.updatePosition(sortX, sortY)
-            
+
             sortX += note_width + gap;
             totalX += note_width + gap;
 
             if (totalX > width) {
-                sortY += 210;
-                sortX = 10;
-                totalX = 210;
+                sortY += note_width + gap;
+                sortX = gap;
+                totalX = note_width;
             }
         }
     })
