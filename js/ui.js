@@ -13,8 +13,16 @@ import { saveNotes, exportNotesAsJson } from './storage.js';
 export function initializeUI(noteManager) {
     const noteBoard = document.getElementById('note-board');
     const exportBtn = document.getElementById('export-btn');
-    const sortNew = document.getElementById('new-btn');
-    const sortOld = document.getElementById('old-btn');
+    const newBtn = document.getElementById('new-btn');
+    const oldBtn = document.getElementById('old-btn');
+
+    const gap = 10;
+    let width = innerWidth;
+    let note_width = 200;
+    
+    if (width < 600) {
+        note_width = 160;
+    }
 
     // Double click on board to create a new note
     noteBoard.addEventListener('dblclick', (event) => {
@@ -29,9 +37,50 @@ export function initializeUI(noteManager) {
         exportNotes(noteManager);
     });
 
+    window.addEventListener('resize', () => {
+        width = innerWidth;
+    })
+
     // Sort new button click handler
-    sortNew.addEventListener('click', () => {
-        
+    newBtn.addEventListener('click', () => {
+        let sortX = 10;
+        let totalX = 210;
+        let sortY = 10;
+
+        for (let note of noteManager.getAllNotes().reverse()) {
+
+            note.updatePosition(sortX, sortY)
+
+            sortX += note_width + gap;
+            totalX += note_width + gap;
+
+            if (totalX > width) {
+                sortY += 210;
+                sortX = 10;
+                totalX = 210;
+            }
+        }
+
+    })
+
+    oldBtn.addEventListener('click', () => {
+        let sortX = 10;
+        let totalX = 210;
+        let sortY = 10;
+
+        for (let note of noteManager.getAllNotes()) {
+
+            note.updatePosition(sortX, sortY)
+            
+            sortX += note_width + gap;
+            totalX += note_width + gap;
+
+            if (totalX > width) {
+                sortY += 210;
+                sortX = 10;
+                totalX = 210;
+            }
+        }
     })
 
     // Setup auto-save timer
@@ -222,7 +271,7 @@ export function exportNotes(noteManager) {
 }
 
 export function SortByNew(notes) {
-    
+
 }
 
 /**

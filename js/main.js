@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Create Note objects from the saved data
         savedNotes.forEach(noteData => {
-            console.log(noteData)
             const note = new Note(noteData);
             noteManager.addNote(note);
         });
